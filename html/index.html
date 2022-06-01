@@ -36,12 +36,22 @@
         height: 60%;
         align-self: center;
       }
+      section#tok{
+        border: 2px solid;
+        width: 40%;
+        height: 10%;
+        margin-bottom: 5px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+      }
     </style>
-    <script src="./index.js" charset="utf-8" defer ></script>
+    <script src="../static/js/index.js" charset="utf-8" defer ></script>
 </head>
 <body>
-
-  <form action="" method="post">
+  <section id="tok">
+    <p id="token"></p>
+  </section>
+  <form method="post">
     <section>
       <label class="form-label" for="login">login</label>
       <input class="form-control" id="login" type="text" name="" value="">
