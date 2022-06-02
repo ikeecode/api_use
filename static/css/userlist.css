@@ -41,7 +41,7 @@ input:focus {
   background-color: #696969;
 }
 
-section{
+section.head{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -62,23 +62,89 @@ form{
   justify-content: center;
   align-items: center;
   border: 2px solid;
-  width: 50vw;
+  width: 60vw;
+}
+
+fieldset.info{
+  /* border: 2px solid; */
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid; */
+}
+
+div.duo{
+  display: flex;
+  flex-direction: row;
+  width: 55vw;
+  justify-content: space-around;
+}
+
+fieldset.address{
+  /* border: 2px solid; */
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid;
+}
+
+fieldset.company{
+  /* border: 2px solid; */
+  width: 23vw;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid; */
 }
 
 fieldset{
-  border: 2px solid;
-  width: 40vw;
-  display: flex;
-  flex-direction: column;
+  padding: 6px;
 }
-
 
 fieldset input{
   align-self: flex-end;
-  width: 40%;
+  width: 70%;
   height: 40px;
+  border-bottom: 2px solid;
+  float: right;
+}
+fieldset input:focus{
+  background-color: #E8E8E8;
+  outline: none;
+  color: black;
 }
 
 fieldset label{
-  
+  align-self: flex-start;
+  /* border: 2px solid; */
+  float: left;
+  width: 20%;
+  padding-top: 10px;
+  align-self: center;
+}
+
+article{
+  /* border: 2px solid; */
+}
+
+button#button{
+  width: 15vw;
+  height: 7vh;
+}
+
+div#closebtn{
+  border: 2px solid;
+  width: 50px;
+  align-self: flex-end;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+
+div#popup{
+  background-color: #ecf0f1;
+  position: absolute;
+  top: -700px;
+  height: 90vh;
+  overflow: scroll;
+  transition: .7s;
 }

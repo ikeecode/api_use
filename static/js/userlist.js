@@ -39,7 +39,7 @@ async function create_table(){
 
   `
   table.appendChild(header)
-  document.body.appendChild(table)
+  document.body.querySelector('div#body').appendChild(table)
   // console.log(data)
   data.forEach((item,i) => {
       tr = itemBuilder(item, i)

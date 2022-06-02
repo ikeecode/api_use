@@ -1,42 +1,47 @@
-var signin = document.getElementById("signin")
 const button = document.querySelector('#button')
-document.querySelector("#ajouter").addEventListener("click",function(){
-
-   document.querySelector(".popup").classList.add("active")
-   cliquer(signin)
-
-   let butn = document.getElementById("signin")
-   butn.addEventListener("click", function(){
-       let input = document.getElementById("name")
-       console.log("input",input.value)
-   })
+const ajouter = document.querySelector('#ajouter')
+const popup = document.querySelector('#popup')
+const closebtn = document.querySelector('div#closebtn')
+// const url = 'http://127.0.0.1:5000/api/users/'
 
 
- })
- document.querySelector(".popup .close-btn").addEventListener("click",function(){
-     document.querySelector(".popup").classList.remove("active")
- })
+
+// the data to retrieve form the form
+const name        = document.getElementById("name")
+const email       = document.getElementById("email")
+const username    = document.getElementById("username")
+const website     = document.getElementById("website")
+const password    = document.getElementById("password")
+const phone       = document.getElementById("phone")
+const nameCompany = document.getElementById("nameCompany")
+const catchPhrase = document.getElementById("catchPhrase")
+const bs          = document.getElementById("bs")
+const street      = document.getElementById("street")
+const suite       = document.getElementById("suite")
+const city        = document.getElementById("city")
+const zipcode     = document.getElementById("zipcode")
+const lat         = document.getElementById("lat")
+const lng         = document.getElementById("lng")
 
 
+
+ajouter.addEventListener("click",function(){
+  popup.style.top = "10px"
+})
+
+closebtn.addEventListener("click", ()=>{
+  popup.style.top = "-700px"
+})
+
+popup.addEventListener('blur', ()=>{
+  popup.style.top = "-700px"
+})
 // var url = 'http://127.0.0.1:5000/api/users/'
 
-button.addEventListener('click', (e) => {
-        //console.log("hey")
-        name        = document.getElementById("name")
-        email       = document.getElementById("email")
-        username    = document.getElementById("username")
-        website     = document.getElementById("website")
-        password    = document.getElementById("password")
-        phone       = document.getElementById("phone")
-        nameCompany = document.getElementById("nameCompany")
-        catchPhrase = document.getElementById("catchPhrase")
-        bs          = document.getElementById("bs")
-        street      = document.getElementById("street")
-        suite       = document.getElementById("suite")
-        city        = document.getElementById("city")
-        zipcode     = document.getElementById("zipcode")
-        lat         = document.getElementById("lat")
-        lng         = document.getElementById("lng")
+
+
+button.addEventListener('click', async (e)=>{
+  console.log(name)
         form        = {
           "address": {
                   "city":city.value,
@@ -54,17 +59,20 @@ button.addEventListener('click', (e) => {
               "name":nameCompany.value
           },
           "email": email.value,
-          "name":name.value,
-          "phone":phone.value ,
+          "name": name.value,
+          "phone": phone.value ,
           "username": username.value,
           "website":website.value
       }
-    //     fetch('', {
-    //         method: "POST",
-    //         body: JSON.stringify(form),
-    //         headers: {
-    //             "Content-type": "application/json charset=UTF-8"
-    //         }
-    //     })
-    // })
+      console.log(form)
+      e.preventDefault()
+
+      await fetch(url + '?token=' + user.token, {
+            method: "POST",
+            body: JSON.stringify(form),
+            headers: {
+                "Content-type": "application/json charset=UTF-8",
+                "Access-Control-Allow-Origin" : "*"
+            }
+        })
 })

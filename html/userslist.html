@@ -9,74 +9,106 @@
     <title></title>
   </head>
   <body>
-
-    <section>
-      <a href="#"><button id="ajouter" class="btn btn-info" type="button" name="button">Ajouter User</button></a>
-      <div class="">
-        Profil : <input id="profil" type="text" name="" value="" disabled>
-      </div>
-    </section>
+    <div id="body">
+      <section class="head">
+        <a href="#"><button id="ajouter" class="btn btn-info" type="button" name="button">Ajouter User</button></a>
+        <div class="">
+          Profil : <input id="profil" type="text" name="" value="" disabled>
+        </div>
+      </section>
+    </div>
     <br>
-    <div class="popup active">
-      <form class="" action="index.html" method="post">
-        <div class="close-btn">&times;</div>
+    <div  id="popup" class="popup active">
+      <form method="post">
+        <div id="closebtn">&times;</div>
         <h2>Form d'ajout</h2>
-        <fieldset>
+        <fieldset class="info">
           <legend> Informations Utilisateurs</legend>
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Enter Name">
+          <article class="">
+            <label for="name">Name</label>
+            <input type="text" id="name" value="" placeholder="Enter Name">
+          </article>
           <br>
-          <label for="email">Email</label>
-          <input type="text" id="email" placeholder="Enter email">
+          <article class="">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter email">
+          </article>
           <br>
-          <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Enter Username">
+          <article class="">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter Username">
+          </article>
           <br>
-          <label for="website">Website</label>
-          <input type="text" id="website" placeholder="Enter website">
+          <article class="">
+            <label for="website">Website</label>
+            <input type="text" id="website" placeholder="Enter website">
+          </article>
           <br>
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter password">
+          <article class="">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password">
+          </article>
           <br>
-          <label for="phone">phone</label>
-          <input type="text" id="phone" placeholder="Enter phone">
+          <article class="">
+            <label for="phone">phone</label>
+            <input type="text" id="phone" placeholder="Enter phone">
+          </article>
         </fieldset>
         <!--  -->
 
-        <fieldset>
-          <legend> Infos Company</legend>
-          <label for="nameCompany">Nom Company</label>
-          <input type="text" id="nameCompany" placeholder="Enter  Nom company">
-          <br>
-          <label for="catchPhrase">catchPhrase</label>
-          <input type="text" id="catchPhrase" placeholder="Enter catchPhrase">
-          <br>
-          <label for="bs">bs</label>
-          <input type="text" id="bs" placeholder="Enter bs">
-        </fieldset>
 
-        <fieldset>
-          <legend>Infos address</legend>
-
-          <label for="street">street</label>
-          <input type="text" id="street" placeholder="Enter nom street">
-          <br>
-          <label for="suite">suite</label>
-          <input type="text" id="suite" placeholder="Enter nom suite">
-          <br>
-          <label for="city">city</label>
-          <input type="text" id="city" placeholder="Enter nom city">
-          <br>
-          <label for="zipcode">zipcode</label>
-          <input type="text" id="zipcode" placeholder="Enter zipcode">
-          <br>
-          <label for="lat">lat</label>
-          <input type="text" id="lat" placeholder="Enter lat">
-          <br>
-          <label for="lng">lng</label>
-          <input type="text" id="lng" placeholder="Enter lng">
-        </fieldset>
-        <button id="button" class="btn" type="submit" name="button">Ajouter</button>
+        <div class="duo">
+          <fieldset class="address">
+            <legend>Infos address</legend>
+            <article class="">
+              <label for="street">street</label>
+              <input type="text" id="street" placeholder="Enter nom street">
+            </article>
+            <br>
+            <article class="">
+              <label for="suite">suite</label>
+              <input type="text" id="suite" placeholder="Enter nom suite">
+            </article>
+            <br>
+            <article class="">
+              <label for="city">city</label>
+              <input type="text" id="city" placeholder="Enter nom city">
+            </article>
+            <br>
+            <article class="">
+              <label for="zipcode">zipcode</label>
+              <input type="text" id="zipcode" placeholder="Enter zipcode">
+            </article>
+            <br>
+            <article class="">
+              <label for="lat">lat</label>
+              <input type="text" id="lat" placeholder="Enter lat">
+            </article>
+            <br>
+            <article class="">
+              <label for="lng">lng</label>
+              <input type="text" id="lng" placeholder="Enter lng">
+            </article>
+          </fieldset>
+          <fieldset class="company">
+            <legend> Infos Company</legend>
+            <article class="">
+              <label for="nameCompany">Nom Company</label>
+              <input type="text" id="nameCompany" placeholder="Enter  Nom company">
+            </article>
+            <br>
+            <article class="">
+              <label for="catchPhrase">catchPhrase</label>
+              <input type="text" id="catchPhrase" placeholder="Enter catchPhrase">
+            </article>
+            <br>
+            <article class="">
+              <label for="bs">bs</label>
+              <input type="text" id="bs" placeholder="Enter bs">
+            </article>
+          </fieldset>
+        </div>
+        <button id="button" class="btn btn-primary" type="submit" name="button">Ajouter</button>
       </form>
     </div>
   </body>
