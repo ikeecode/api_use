@@ -10,7 +10,7 @@ body{
 }
 
 nav{
-  border: 2px solid;
+  /* border: 2px solid; */
   width: 50vw;
   height: 50vh;
 }
@@ -51,4 +51,17 @@ a{
 
 a:hover{
   color: white;
+}
+
+section button{
+  transition: .6s;
+}
+section button:hover{
+  margin-left: 2px;
+  transition: 1s;
+}
+
+section{
+  align-self: flex-start;
+  margin: 30px;
 }

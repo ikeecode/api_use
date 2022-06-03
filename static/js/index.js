@@ -3,6 +3,11 @@ const url = 'http://127.0.0.1:5000/api/authen/'
 
 const token = document.querySelector('#token')
 
+window.onload = function(){
+  token.innerHTML = 'Veuillez saisir vos informations !'
+  token.parentNode.classList.add('move')
+}
+
 // fetch(url)
 // window.location.href = url
 
@@ -31,10 +36,15 @@ form.addEventListener('submit', async (e)=>{
   })
 
   let response = await getToken(data)
-  token.innerText = response.token
-  localStorage.setItem('user', JSON.stringify(response))
-  next('userslist.html')
-
+  // console.log(response.status)
+  if (response.status != 404){
+    token.innerText = response.token
+    localStorage.setItem('user', JSON.stringify(response))
+    next('userslist.html')
+  }
+  else {
+    token.innerText = 'Login ou mot de passe incorrect !'
+  }
 })
 
 

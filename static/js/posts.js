@@ -1,14 +1,13 @@
-const url = 'http://127.0.0.1:5000/api/users/'
+// /api/users/<int:user_id>/posts/
+const url ='http://127.0.0.1:5000/api/users/'
 const user = JSON.parse(localStorage.getItem('user'))
 const userId = JSON.parse(localStorage.getItem('current_userId'))
 const tableScroll = document.querySelector('div#body')
 const adminWidth = '95vw'
 const userWidth = '85vw'
 const visiteurWith = '76vw'
-const itemsId = {}
-const xdata = {}
 
-console.log(userId)
+
 tableScroll.addEventListener('scroll', (e)=>{
   return;
 })
@@ -20,8 +19,8 @@ tableScroll.addEventListener('scroll', (e)=>{
 
 
 async function getUsers(arg){
-  arg = url + '?token=' + user.token
-  // console.log(arg)
+  arg = url + userId + '/posts/?token=' + user.token
+  console.log(arg)
   let users = await fetch(arg)
   if (users.status != 200){
     return false
@@ -34,17 +33,12 @@ async function getUsers(arg){
 async function create_table(){
   try {
     data = await getUsers(url)
-    data.forEach((item, i) => {
-      xdata[item.id] = item
-    });
-
   }
   catch(e) {
     return false
   }
-  // console.log(xdata)
   // data = await getUsers(url)
-  if (data){
+  if (data && data.length != 0){
   table = document.createElement('table')
   table.setAttribute('class', 'table')
   table.setAttribute('height', '10px')
@@ -53,38 +47,28 @@ async function create_table(){
   tbody  = document.createElement('tbody')
   header.innerHTML = `
           <th></th>
-          <th id='th1'>Username</th>
-          <th id='th2'>Name</th>
-          <th id='th3'>Email</th>
-          <th id='th4'>Phone</th>
-          <th id='th5'></th>
+          <th id='th1'>Title</th>
+          <th id='th2'>Body</th>
+          <th id='th3'></th>
+          <th id='th4'></th>
+          <th id='th5'>UserID</th>
           <th class="${isAdmin_or_User()}"></th>
           <th class="${isAdmin()}"></th>
   `
   table.appendChild(header)
   table.appendChild(tbody)
-  // les usersID des donnees en cles valeurs {username: id}
 
   document.body.querySelector('div#body').appendChild(table)
   data.reverse()
   data.forEach((item,i) => {
       tr = itemBuilder(item, i)
       tbody.appendChild(tr)
-      itemsId[item.username] = item.id
   })
-
-  let getId = function (name){
-    return itemsId[name]
-  }
 
   editer = table.querySelectorAll('button.editer')
   editer.forEach(item => {
-    item.addEventListener('click', (e)=>{
-        xname = e.target.parentNode.parentNode.parentNode.children[1].firstChild.value
-        id = getId(xname)
-        localStorage.setItem('current_userId', JSON.stringify(id))
+    item.addEventListener('click', ()=>{
         window.location.href = 'usermenu.html'
-        // console.log(JSON.parse(localStorage.getItem('current_userId')))
       })
   })
 
@@ -121,21 +105,15 @@ async function create_table(){
 
       item.firstChild.addEventListener('blur', ()=>{
         item.firstChild.disabled = true
-        // console.log(item.firstChild)
       })
 
       item.firstChild.addEventListener('focusout', ()=>{
         item.firstChild.disabled = true
-        // console.log('y')
       })
 
-      item.firstChild.addEventListener('mouseout', ()=>{
-        item.firstChild.disabled = true
-        xname = item.firstChild.parentElement.parentElement.children[1].firstChild.value
-        id = getId(xname)
-        console.log(id)
-        console.log(data)
-      })
+      // item.firstChild.addEventListener('mouseout', ()=>{
+      //   item.firstChild.disabled = true
+      // })
 
       // custom width
       myhead = tableScroll.querySelector('#myhead')
@@ -186,7 +164,12 @@ async function create_table(){
   })
   }
   else{
-    document.write("Vous n'avez pas access à cette ressource")
+    if (data.length == 0){
+      document.write('Cet utilisateur n\'a aucune donnees dans l\'Api')
+    }
+    else {
+      document.write("Vous n'avez pas access à cette ressource")
+    }
   }
 }
 
@@ -200,10 +183,10 @@ function itemBuilder(item, i){
 
   tr.innerHTML = `
       <td><input type="checkbox" name="" value=""></td>
-      <td><input type="text" name="" value="${item.username}" disabled></td>
-      <td><input type="text" name="" value="${item.name}" disabled></td>
-      <td><input type="text" name="" value="${item.email}" disabled></td>
-      <td><input type="text" name="" value="${item.phone}" disabled></td>
+      <td><input type="text" name="" value="${item.title}" disabled></td>
+      <td><input type="text" name="" value="${item.body}" disabled></td>
+      <td><input type="text" name="" value="" disabled></td>
+      <td><input type="text" name="" value="${item.userId}" disabled></td>
       <td><a><button class="btn btn-outline-success editer" type="button" name="button">voir +</button></a></td>
       <td class="${isAdmin_or_User()}"><a href="#"><button class="btn btn-outline-primary" type="button" name="button">Modifier</button></a></td>
       <td class="${isAdmin()}"><a href="#"><button class="btn btn-outline-danger" type="button" name="button">Supprimer</button></a></td>
@@ -215,7 +198,7 @@ function itemBuilder(item, i){
 
 // affiche le profil de l'utilisateur
 const profil = document.querySelector('#profil')
-profil.style.border = "5px dashed white"
+profil.style.border = "2px dashed white"
 profil.style.backgroundColor = "#0285D1"
 profil.style.width = "100px"
 profil.value = user.user.profil
@@ -237,21 +220,4 @@ function isAdmin(){
 
 function isAdmin_or_User(){
   return (user.user.profil == 'visiteur' ? 'hide' : '')
-}
-
-// console.log(itemsId)
-
-
-// Make an HTTP PUT Request
-async function putUser(xurl, data) {
-  var response = await fetch(xurl, {
-      method: 'PUT',
-      headers: {
-          'Content-type': 'application/json'
-      },
-      body: JSON.stringify(data)
-  })
-
-  var resData = await response.json()
-  console.log(resData)
 }

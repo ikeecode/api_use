@@ -3,10 +3,12 @@
 }
 
 body{
+  /* position: fixed; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 input{
@@ -21,21 +23,21 @@ input[disabled]{
   color: black;
 }
 
-tr:hover{
+tbody tr:hover{
   background-color: #E8E8E8;
 }
 
-tr.selected {
+tbody tr.selected {
   background-color: #E0E0E0;
 }
 
 thead{
-  background-color: #00CCFF;
+    background-color: #00CCFF;
 }
 
-thead:hover{
+/* thead:hover{
   background-color: #00CCFF;
-}
+} */
 
 input:focus {
   background-color: #696969;
@@ -127,24 +129,114 @@ article{
 }
 
 button#button{
+  margin-top: 20px;
   width: 15vw;
   height: 7vh;
 }
 
 div#closebtn{
-  border: 2px solid;
+  /* border: 2px solid; */
   width: 50px;
   align-self: flex-end;
   font-size: 50px;
   cursor: pointer;
 }
 
+.blur{
+  filter: blur(10px);
+}
 
 div#popup{
-  background-color: #ecf0f1;
+  background-color: #ffffff;
   position: absolute;
+  border-radius: 4px;
   top: -700px;
   height: 90vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   transition: .7s;
+}
+
+legend{
+  background-color: #00CCFF;
+}
+
+/* for the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  /* border-radius: 10px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00CCFF;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+div#body{
+  top: 160px;
+  position: relative;
+  height: 38vh;
+  /* width: 95vw; /* admin*/ */
+  /* width: 80vw; */
+  border-bottom: 2px solid #00CCFF;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+table.table{
+  /* position: relative; */
+  /* top: 10%; */
+  /* left: 5%; */
+  /* width: 90%; */
+  /* background-color: black; */
+  /* height: 15%; */
+  /* border: 2px solid red; */
+  /* overflow: auto; */
+}
+
+table.table thead{
+  position: fixed;
+  /* width: 95vw; /* admin*/ */
+  /* width: 80vw; */
+  top: 140px;
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid; */
+  justify-content: space-between;
+}
+
+table.table thead th {
+  /* border: 2px solid; */
+  /* width: 200px; */
+  /* padding-left: 10px; */
+}
+
+table.table thead th#th1{
+  /* background-color: red; */
+}
+
+table.table thead th#th2{
+  /* background-color: green; */
+  padding-left: 205px;
+}
+
+table.table thead th#th3{
+  /* background-color: yellow; */
+  padding-left: 230px;
+  /* padding-right: 20px; */
+
+}
+
+table.table thead th#th4{
+  /* background-color: blue; */
+  padding-left: 240px;
+  padding-right: 0;
+
 }

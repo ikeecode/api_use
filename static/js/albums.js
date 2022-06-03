@@ -1,14 +1,11 @@
 const url = 'http://127.0.0.1:5000/api/users/'
 const user = JSON.parse(localStorage.getItem('user'))
-const userId = JSON.parse(localStorage.getItem('current_userId'))
 const tableScroll = document.querySelector('div#body')
 const adminWidth = '95vw'
 const userWidth = '85vw'
 const visiteurWith = '76vw'
-const itemsId = {}
-const xdata = {}
 
-console.log(userId)
+
 tableScroll.addEventListener('scroll', (e)=>{
   return;
 })
@@ -34,15 +31,10 @@ async function getUsers(arg){
 async function create_table(){
   try {
     data = await getUsers(url)
-    data.forEach((item, i) => {
-      xdata[item.id] = item
-    });
-
   }
   catch(e) {
     return false
   }
-  // console.log(xdata)
   // data = await getUsers(url)
   if (data){
   table = document.createElement('table')
@@ -63,28 +55,18 @@ async function create_table(){
   `
   table.appendChild(header)
   table.appendChild(tbody)
-  // les usersID des donnees en cles valeurs {username: id}
 
   document.body.querySelector('div#body').appendChild(table)
   data.reverse()
   data.forEach((item,i) => {
       tr = itemBuilder(item, i)
       tbody.appendChild(tr)
-      itemsId[item.username] = item.id
   })
-
-  let getId = function (name){
-    return itemsId[name]
-  }
 
   editer = table.querySelectorAll('button.editer')
   editer.forEach(item => {
-    item.addEventListener('click', (e)=>{
-        xname = e.target.parentNode.parentNode.parentNode.children[1].firstChild.value
-        id = getId(xname)
-        localStorage.setItem('current_userId', JSON.stringify(id))
+    item.addEventListener('click', ()=>{
         window.location.href = 'usermenu.html'
-        // console.log(JSON.parse(localStorage.getItem('current_userId')))
       })
   })
 
@@ -121,21 +103,15 @@ async function create_table(){
 
       item.firstChild.addEventListener('blur', ()=>{
         item.firstChild.disabled = true
-        // console.log(item.firstChild)
       })
 
       item.firstChild.addEventListener('focusout', ()=>{
         item.firstChild.disabled = true
-        // console.log('y')
       })
 
-      item.firstChild.addEventListener('mouseout', ()=>{
-        item.firstChild.disabled = true
-        xname = item.firstChild.parentElement.parentElement.children[1].firstChild.value
-        id = getId(xname)
-        console.log(id)
-        console.log(data)
-      })
+      // item.firstChild.addEventListener('mouseout', ()=>{
+      //   item.firstChild.disabled = true
+      // })
 
       // custom width
       myhead = tableScroll.querySelector('#myhead')
@@ -215,7 +191,7 @@ function itemBuilder(item, i){
 
 // affiche le profil de l'utilisateur
 const profil = document.querySelector('#profil')
-profil.style.border = "5px dashed white"
+profil.style.border = "2px dashed white"
 profil.style.backgroundColor = "#0285D1"
 profil.style.width = "100px"
 profil.value = user.user.profil
@@ -237,21 +213,4 @@ function isAdmin(){
 
 function isAdmin_or_User(){
   return (user.user.profil == 'visiteur' ? 'hide' : '')
-}
-
-// console.log(itemsId)
-
-
-// Make an HTTP PUT Request
-async function putUser(xurl, data) {
-  var response = await fetch(xurl, {
-      method: 'PUT',
-      headers: {
-          'Content-type': 'application/json'
-      },
-      body: JSON.stringify(data)
-  })
-
-  var resData = await response.json()
-  console.log(resData)
 }

@@ -1,0 +1,113 @@
+.form-control{
+  /* width: 300px; */
+}
+
+html{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+body{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  width: 40%;
+  height: 60%;
+  align-self: center;
+  border-radius: 0 0 15px 15px;
+}
+section#tok{
+  border: 2px solid;
+  border-radius: 15px 15px 0 0;
+  width: 40%;
+  height: 10%;
+  margin-bottom: 5px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: #00CCFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section#tok p{
+  margin-top: 17px;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+/* for the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 15px white;
+  /* border-radius: 10px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+.move {
+  animation-name: move;
+  animation-duration: 10s;
+}
+.slideUp {
+  position: relative;
+  animation: move 5s infinite;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    color: yellow;
+    font-size: 10px;
+  }
+  40% {
+    opacity: 0.2;
+    color: red;
+    font-size: 20px;
+
+  }
+  80% {
+    opacity: 0.3;
+    color: black;
+    font-size: 30px;
+
+  }
+  120% {
+    opacity: 1;
+    transform: translate(200, 0);
+    font-size: 40px;
+  }
+}
+
+@keyframes move {
+  0%{
+    left: 0;
+    background-color: red;
+  }
+  100%{
+    left: 200px;
+  }
+}

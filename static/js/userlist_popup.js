@@ -1,6 +1,7 @@
 const button = document.querySelector('#button')
 const ajouter = document.querySelector('#ajouter')
 const popup = document.querySelector('#popup')
+const body = document.querySelector('#body')
 const closebtn = document.querySelector('div#closebtn')
 // const url = 'http://127.0.0.1:5000/api/users/'
 
@@ -27,17 +28,21 @@ const lng         = document.getElementById("lng")
 
 ajouter.addEventListener("click",function(){
   popup.style.top = "10px"
+  popup.style.transition = "1s"
+  body.classList.toggle('blur')
 })
 
 closebtn.addEventListener("click", ()=>{
   popup.style.top = "-700px"
+  popup.style.transition = "1s"
+  body.classList.toggle('blur')
+
 })
 
 popup.addEventListener('blur', ()=>{
   popup.style.top = "-700px"
 })
 // var url = 'http://127.0.0.1:5000/api/users/'
-
 
 
 button.addEventListener('click', async (e)=>{
@@ -64,7 +69,7 @@ button.addEventListener('click', async (e)=>{
           "username": username.value,
           "website":website.value
       }
-      console.log(form)
+      // console.log(form)
       e.preventDefault()
 
       await fetch(url + '?token=' + user.token, {
@@ -75,4 +80,5 @@ button.addEventListener('click', async (e)=>{
                 "Access-Control-Allow-Origin" : "*"
             }
         })
+    window.location.reload()
 })
