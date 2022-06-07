@@ -1,10 +1,10 @@
-const button = document.querySelector('#button')
+const button  = document.querySelector('#button')
 const ajouter = document.querySelector('#ajouter')
-const popup = document.querySelector('#popup')
-const body = document.querySelector('#body')
+const popup   = document.querySelector('#popup')
+const body    = document.querySelector('#body')
 const closebtn = document.querySelector('div#closebtn')
 // const url = 'http://127.0.0.1:5000/api/users/'
-
+const h2    = document.querySelector('h2')
 
 
 // the data to retrieve form the form
@@ -27,26 +27,30 @@ const lng         = document.getElementById("lng")
 
 
 ajouter.addEventListener("click",function(){
+  popup.classList.toggle('xajouter')
+  // popup.classList.toggle('xajouter')
   popup.style.top = "10px"
+  h2.innerText = 'Formulaire d\'ajout d\'un user'
   popup.style.transition = "1s"
   body.classList.toggle('blur')
+  button.innerText = 'ajouter'
+
 })
 
 closebtn.addEventListener("click", ()=>{
   popup.style.top = "-700px"
   popup.style.transition = "1s"
   body.classList.toggle('blur')
+  popup.classList.remove('xmodifier')
+  popup.classList.remove('xajouter')
 
 })
 
-popup.addEventListener('blur', ()=>{
-  popup.style.top = "-700px"
-})
+
 // var url = 'http://127.0.0.1:5000/api/users/'
 
 
 button.addEventListener('click', async (e)=>{
-  console.log(name)
         form        = {
           "address": {
                   "city":city.value,
@@ -69,16 +73,32 @@ button.addEventListener('click', async (e)=>{
           "username": username.value,
           "website":website.value
       }
-      // console.log(form)
+      console.log(form)
       e.preventDefault()
 
-      await fetch(url + '?token=' + user.token, {
-            method: "POST",
-            body: JSON.stringify(form),
-            headers: {
-                "Content-type": "application/json charset=UTF-8",
-                "Access-Control-Allow-Origin" : "*"
-            }
-        })
+      if (popup.classList.contains('xajouter')) {
+        await fetch(url +  '?token=' + user.token, {
+              method: "POST",
+              body: JSON.stringify(form),
+              headers: {
+                  "Content-type": "application/json charset=UTF-8",
+                  "Access-Control-Allow-Origin" : "*"
+              }
+          })
+      }
+      if (popup.classList.contains('xmodifier')) {
+        current_userId = JSON.parse(localStorage.getItem('current_userId'))
+        // form['id'] = current_userId
+        // console.log(form)
+        // console.log(url + current_userId + '/?token=' + user.token)
+        await fetch(url + current_userId + '/?token=' + user.token, {
+              method: "PUT",
+              body: JSON.stringify(form),
+              headers: {
+                  "Content-type": "application/json charset=UTF-8",
+                  "Access-Control-Allow-Origin" : "*"
+              }
+          })
+      }
     window.location.reload()
 })

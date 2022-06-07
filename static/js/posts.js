@@ -6,16 +6,27 @@ const tableScroll = document.querySelector('div#body')
 const adminWidth = '95vw'
 const userWidth = '85vw'
 const visiteurWith = '76vw'
+const menuBtn = document.querySelector('#menuBtn')
+
 
 
 tableScroll.addEventListener('scroll', (e)=>{
-  return;
-})
-
+  tableScroll.scroll({
+    top: tableScroll.scrollHeight,
+    left: 0,
+    behavior: 'smooth'
+  })
+  setInterval(function(){
+    compteur.innerHTML = Math.ceil(tableScroll.scrollTop / 55)
+  }, 100)
+  }
+)
 // customization for the width
 
 
-
+menuBtn.addEventListener('click', (e)=>{
+  window.location.href = 'usermenu.html'
+})
 
 
 async function getUsers(arg){
@@ -187,7 +198,6 @@ function itemBuilder(item, i){
       <td><input type="text" name="" value="${item.body}" disabled></td>
       <td><input type="text" name="" value="" disabled></td>
       <td><input type="text" name="" value="${item.userId}" disabled></td>
-      <td><a><button class="btn btn-outline-success editer" type="button" name="button">voir +</button></a></td>
       <td class="${isAdmin_or_User()}"><a href="#"><button class="btn btn-outline-primary" type="button" name="button">Modifier</button></a></td>
       <td class="${isAdmin()}"><a href="#"><button class="btn btn-outline-danger" type="button" name="button">Supprimer</button></a></td>
 
