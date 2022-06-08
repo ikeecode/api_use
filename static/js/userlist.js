@@ -98,7 +98,8 @@ async function create_table(){
         // console.log(JSON.parse(localStorage.getItem('current_userId')))
       })
   })
-
+  supprimer = table.querySelectorAll('button.supprimer')
+  console.log(supprimer)
   modifier = table.querySelectorAll('button.modifier')
   modifier.forEach(item => {
     item.addEventListener('click', (e)=>{
@@ -289,7 +290,7 @@ function itemBuilder(item, i){
       <td><input type="text" name="phone" value="${item.phone}" disabled></td>
       <td class='no'><a><button class="btn btn-outline-success editer" type="button" name="button">voir +</button></a></td>
       <td class="${isAdmin_or_User()} no"><a href="#"><button class="btn btn-outline-primary modifier" type="button" name="button">Modifier</button></a></td>
-      <td class="${isAdmin()} no"><a href="#"><button class="btn btn-outline-danger modifier" type="button" name="button">Supprimer</button></a></td>
+      <td class="${isAdmin()} no"><a href="#"><button class="btn btn-outline-danger supprimer" type="button" name="button">Supprimer</button></a></td>
 
   `
   return tr
